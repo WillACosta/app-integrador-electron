@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Integrador Firebird</title>
+
+  <link rel="stylesheet" href="./assets/photon/dist/css/photon.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <script>
+    const Firebird = require('node-firebird');
+    let users = null;
+
+    /* Functions */
+    function callbdData() {
+
+      const options = {
+        host: '127.0.0.1',
+        port: 3050,
+        database: 'C:/BD/DB.FDB',
+        user: 'SYSDBA',
+        password: 'masterkey',
+        lowercase_keys: false, // set to true to lowercase keys
+        role: null, // default
+        pageSize: 4096 // default when creating database
+      }
+
+      Firebird.attach(options, function (err, db) {
+        if (err) {
+          console.war(err);
+          throw err;
+        }
+
+        db.query('SELECT * FROM USUARIOS', function (err, result) {
+          showUsers(result);
+          db.detach();
+        });
+
+      });
+    }
+
+    function showUsers(users) {
+      const listWrapper = document.getElementById('list-wrapper');
+
+      console.log(users);
+
+      users.forEach((user) => {
+        const tr = document.createElement('tr');
+        const firstTD = document.createElement('td');
+        const secondTD = document.createElement('td');
+        const thirdTD = document.createElement('td');
+        const fourthTD = document.createElement('td');
+
+        firstTD.innerHTML = user.ID;
+        secondTD.innerHTML = user.NOME;
+        thirdTD.innerHTML = user.EMAIL;
+        fourthTD.innerHTML = '-';
+
+        tr.append(firstTD, secondTD, thirdTD);
+
+        document.getElementById('table-body').append(tr);
+      });
+    }
+
+    // DOMContentLoaded
+    // window.addEventListener('DOMContentLoaded', () => {
+    //   callbdData()
+    // });
+
+    window.onload = callbdData;
+
+  </script>
+
+</head>
+
+<body>
+
+  <div class="window">
+    <header class="toolbar toolbar-header">
+      <div class="toolbar-actions">
+        <div class="btn-group">
+          <button class="btn btn-default active">
+            <span class="icon icon-user"></span>
+          </button>
+          <span id="user-label">Usuários</span>
+        </div>
+      </div>
+    </header>
+    <div class="window-content">
+      <div class="pane-group">
+        <div class="pane pane-sm sidebar">
+          <nav class="nav-group">
+            <h5 class="nav-group-title">Menu</h5>
+            <a class="nav-group-item" href="create-user.html">
+              <span class="icon icon-user-add"></span>
+              Novo Usuário
+            </a>
+            <span class="nav-group-item active">
+              <span class="icon icon-user"></span>
+              Listagem
+            </span>
+            <a class="nav-group-item" href="about.html">
+              <span class="icon icon-info-circled"></span>
+              Sobre
+            </a>
+          </nav>
+        </div>
+        <div class="pane">
+          <table class="table-striped">
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Ação</th>
+              </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+<script>
+  // require('./rendere.js');
+</script>
+
+</html>

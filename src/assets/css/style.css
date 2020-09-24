@@ -1,0 +1,14 @@
+.toolbar-header {
+    padding: 4px
+}
+
+#user-label {
+    vertical-align: middle;
+    margin-left: 5px;
+    font-weight: bold;
+    font-size: .96rem
+}
+
+form{
+    padding: 25px;
+}

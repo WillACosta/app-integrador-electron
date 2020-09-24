@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integrador Firebird</title>
+
+    <link rel="stylesheet" href="./assets/photon/dist/css/photon.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+    <script>
+        function ready(fn) {
+            if (document.readyState != 'loading') {
+                fn();
+            } else {
+                document.addEventListener('DOMContentLoaded', fn);
+            }
+        }
+
+        ready(function () {
+            const saveBtn = document.getElementById('saveBtn');
+            saveBtn.addEventListener('click', () => {
+                alert('Salvando...');
+            })
+        })
+    </script>
+
+</head>
+
+<body>
+
+    <div class="window">
+        <header class="toolbar toolbar-header">
+            <div class="toolbar-actions">
+                <div class="btn-group">
+                    <button class="btn btn-default active">
+                        <span class="icon icon-user"></span>
+                    </button>
+                    <span id="user-label">Usuários</span>
+                </div>
+            </div>
+        </header>
+        <div class="window-content">
+            <div class="pane-group">
+                <div class="pane pane-sm sidebar">
+                    <nav class="nav-group">
+                        <h5 class="nav-group-title">Menu</h5>
+                        <span class="nav-group-item active">
+                            <span class="icon icon-user-add"></span>
+                            Novo Usuário
+                        </span>
+                        <a class="nav-group-item" href="index.html">
+                            <span class="icon icon-user"></span>
+                            Listagem
+                        </a>
+                        <a class="nav-group-item" href="about.html">
+                            <span class="icon icon-info-circled"></span>
+                            Sobre
+                        </a>
+                    </nav>
+                </div>
+                <div class="pane">
+                    <form>
+                        <div class="form-group">
+                            <label>Nome</label>
+                            <input type="text" class="form-control" placeholder="Digite algo...">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" class="form-control" placeholder="Email">
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-form btn-default">Cancelar</button>
+                            <button type="submit" class="btn btn-form btn-primary" id="saveBtn">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
