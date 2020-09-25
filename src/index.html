@@ -33,7 +33,7 @@
           throw err;
         }
 
-        db.query('SELECT * FROM USUARIOS', function (err, result) {
+        db.query('SELECT * FROM USERS', function (err, result) {
           showUsers(result);
           db.detach();
         });
@@ -51,12 +51,10 @@
         const firstTD = document.createElement('td');
         const secondTD = document.createElement('td');
         const thirdTD = document.createElement('td');
-        const fourthTD = document.createElement('td');
 
         firstTD.innerHTML = user.ID;
         secondTD.innerHTML = user.NOME;
         thirdTD.innerHTML = user.EMAIL;
-        fourthTD.innerHTML = '-';
 
         tr.append(firstTD, secondTD, thirdTD);
 
@@ -64,13 +62,17 @@
       });
     }
 
-    // DOMContentLoaded
-    // window.addEventListener('DOMContentLoaded', () => {
-    //   callbdData()
-    // });
+    function ready(fn) {
+      if (document.readyState != 'loading') {
+        fn();
+      } else {
+        document.addEventListener('DOMContentLoaded', fn);
+      }
+    }
 
-    window.onload = callbdData;
-
+    ready(function () {
+      callbdData();
+    });
   </script>
 
 </head>
@@ -93,18 +95,10 @@
         <div class="pane pane-sm sidebar">
           <nav class="nav-group">
             <h5 class="nav-group-title">Menu</h5>
-            <a class="nav-group-item" href="create-user.html">
-              <span class="icon icon-user-add"></span>
-              Novo Usuário
-            </a>
             <span class="nav-group-item active">
-              <span class="icon icon-user"></span>
+              <span class="icon icon-doc-text"></span>
               Listagem
             </span>
-            <a class="nav-group-item" href="about.html">
-              <span class="icon icon-info-circled"></span>
-              Sobre
-            </a>
           </nav>
         </div>
         <div class="pane">
@@ -114,7 +108,6 @@
                 <th>Código</th>
                 <th>Nome</th>
                 <th>Email</th>
-                <th>Ação</th>
               </tr>
             </thead>
             <tbody id="table-body"></tbody>
@@ -125,8 +118,5 @@
   </div>
 
 </body>
-<script>
-  // require('./rendere.js');
-</script>
 
 </html>
