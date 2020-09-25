@@ -12,3 +12,12 @@ Aplicação electron teste de integração com Firebird Database
   - Windows: `npm run package-win`.
   - Linux: `npm run package-linux`.
   - Mac: `npm run package-mac`.
+
+# Tecnologias utilizadas
+
+- Electron JS
+- JavaScript
+- HTML 5
+- CSS 3
+- Framework Photon Kit
+- [Node-firebird](https://github.com/hgourvest/node-firebird)
